@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lists">
         <activity
+            android:name=".json.JsonActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".config.ConfigActivity"
+            android:exported="false" />
+        <activity
+            android:name=".list.ListActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
