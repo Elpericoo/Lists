@@ -1,10 +1,37 @@
 package com.elpericoo.lists.config
 
-class ConfigService {
+import android.content.Context
+import androidx.preference.PreferenceManager
+
+class ConfigService(val context: Context) {
+    // Preference keys
+    val defaultFileKey = "default_file_key"
+    val isFirebaseActive = "is_firebase_active"
+
+    fun getDefaultFileName(): String? {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+        return preferences.getString(defaultFileKey, "")
+    }
+
+    fun setDefaultFileName(name: String) {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+        with(preferences.edit()) {
+            putString(defaultFileKey, name)
+            apply()
+        }
+    }
 
 
-    //TODO get real configuration from user data
-    fun isLocal():Boolean {
-        return true
+    fun getFirebaseActive():Boolean {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+        return preferences.getBoolean(isFirebaseActive, false)
+    }
+
+    fun setFirebaseActive(isActive: Boolean) {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+        with(preferences.edit()) {
+            putBoolean(defaultFileKey, isActive)
+            apply()
+        }
     }
 }

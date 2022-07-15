@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.MenuItem
 import com.elpericoo.lists.R
 import com.elpericoo.lists.config.ConfigActivity
+import com.elpericoo.lists.json.JsonActivity
 import com.elpericoo.lists.list.ListActivity
 import com.elpericoo.lists.login.LoginActivity
 
@@ -14,6 +15,7 @@ class MenuHandler constructor(val context: Context, val current: String) {
     fun intemHandler(item: MenuItem) {
         when (item.itemId) {
             R.id.configMenu -> openConfig(current)
+            R.id.jsonMenu -> openJson(current)
             R.id.listMenu -> openList(current)
             R.id.loginMenu -> openLogin(current)
         }
@@ -24,6 +26,13 @@ class MenuHandler constructor(val context: Context, val current: String) {
             intent = null
         } else {
             intent = Intent(context, ConfigActivity::class.java)
+        }
+    }
+    private fun openJson(current: String) {
+        if (current == "json") {
+            intent = null
+        } else {
+            intent = Intent(context, JsonActivity::class.java)
         }
     }
 

@@ -3,6 +3,7 @@ package com.elpericoo.lists.json
 import android.content.ClipData
 import android.content.Context
 import android.util.Log
+import com.elpericoo.lists.config.ConfigService
 import com.elpericoo.lists.list.ListService
 import com.elpericoo.lists.list.item.Item
 import com.google.gson.Gson
@@ -39,10 +40,15 @@ class JsonService(val context: Context) {
 
         fun readFileList():List<JsonItem> {
             val files = mutableListOf<JsonItem>()
+            val configService = ConfigService(context)
+            val defaultFileName = configService.getDefaultFileName()
             val folder = File(context.filesDir, folderName)
             folder.walk().forEach{
                 if (!it.isDirectory) {
-                    val item = JsonItem(it.nameWithoutExtension)
+                    val item = JsonItem(
+                        it.nameWithoutExtension,
+                        it.nameWithoutExtension == defaultFileName
+                    )
                     files.add(item)
                 }
             }
@@ -51,12 +57,18 @@ class JsonService(val context: Context) {
 
         fun updateFile(jsonfile: JsonFile) {}
 
-        fun deleteFile(fileName: String){
+        fun deleteFile(json: JsonItem){
             val folder = File(context.filesDir, folderName)
-            val file = File(folder, fileName + fileExtension)
+            val file = File(folder, json.name + fileExtension)
             file.delete()
+            if (json.selected) {
+                val configService = ConfigService(context)
+                configService.setDefaultFileName("")
+            }
         }
         fun selectFile(list: List<JsonItem>, item:JsonItem) {
+            val configService = ConfigService(context)
+            configService.setDefaultFileName(item.name)
             list.forEach{
                 it.selected = it.name == item.name
             }

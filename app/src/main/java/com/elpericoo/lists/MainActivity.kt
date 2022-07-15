@@ -18,20 +18,20 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val config = ConfigService()
-
-        //TODO: Check configuration and pass parameters to Login Activity if necesary
-        val isLogged = false
-        if (isLogged) {
-            startActivity(Intent(this, ListActivity::class.java).apply {})
-            return
+        val config = ConfigService(this)
+        
+        if (config.getFirebaseActive()) {
+            //TODO gestionar que hacer si está activo el modo Firebase
+        } else {
+            val defaultFile = config.getDefaultFileName()
+            if (defaultFile.isNullOrBlank()) {
+                startActivity(Intent(this, JsonActivity::class.java))
+            } else {
+                val intent = Intent(this, ListActivity::class.java)
+                intent.putExtra("fileName", defaultFile)
+                startActivity(intent)
+            }
         }
-        if (config.isLocal()) {
-            startActivity(Intent(this, JsonActivity::class.java))
-        }else {
-            val intent = Intent(this, LoginActivity::class.java)
-            intent.putExtra("isLocal", config.isLocal())
-            startActivity(intent)
-        }
+  
     }
 }

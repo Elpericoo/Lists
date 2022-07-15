@@ -2,9 +2,13 @@ package com.elpericoo.lists.json
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.elpericoo.lists.R
 import com.elpericoo.lists.databinding.ActivityJsonBinding
+import menu.MenuHandler
 
 class JsonActivity : AppCompatActivity() {
     private var  _binding: ActivityJsonBinding? = null
@@ -32,6 +36,20 @@ class JsonActivity : AppCompatActivity() {
             createJsonHandler()
         }
     }
+    //Menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        var menuHandler = MenuHandler(this,"json")
+        menuHandler.intemHandler(item)
+        if (menuHandler.intent != null) {
+            startActivity(menuHandler.intent)
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 
     override fun onDestroy() {
@@ -49,7 +67,7 @@ class JsonActivity : AppCompatActivity() {
     }
     private fun deleteHandler(jsonItem: JsonItem, pos: Int) {
         var jsonService = JsonService(this)
-        jsonService.deleteFile(jsonItem.name)
+        jsonService.deleteFile(jsonItem)
         jsonListAdapter.jsonList = jsonService.readFileList()
         jsonListAdapter.notifyItemRemoved(pos)
 

@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/dmoviles/AndroidStudioProjects/Lists/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.1" />
+        <entry key="..\:/Users/dmoviles/AndroidStudioProjects/Lists/app/src/main/res/layout/activity_config.xml" value="0.1" />
+        <entry key="..\:/Users/dmoviles/AndroidStudioProjects/Lists/app/src/main/res/layout/activity_json.xml" value="0.14842958459979735" />
+        <entry key="..\:/Users/dmoviles/AndroidStudioProjects/Lists/app/src/main/res/layout/activity_list.xml" value="0.1" />
+        <entry key="..\:/Users/dmoviles/AndroidStudioProjects/Lists/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Users/dmoviles/AndroidStudioProjects/Lists/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/dmoviles/AndroidStudioProjects/Lists/app/src/main/res/layout/fragment_login_form.xml" value="0.1" />
+        <entry key="..\:/Users/dmoviles/AndroidStudioProjects/Lists/app/src/main/res/layout/item_file_list_layout.xml" value="0.11481481481481481" />
+        <entry key="..\:/Users/dmoviles/AndroidStudioProjects/Lists/app/src/main/res/layout/item_json_list.xml" value="0.11481481481481481" />
+        <entry key="..\:/Users/dmoviles/AndroidStudioProjects/Lists/app/src/main/res/layout/item_layout.xml" value="0.1" />
+        <entry key="..\:/Users/dmoviles/AndroidStudioProjects/Lists/app/src/main/res/menu/menu.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
