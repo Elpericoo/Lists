@@ -2,21 +2,19 @@ package com.elpericoo.lists.list
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.CheckBox
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.elpericoo.lists.R
 import com.elpericoo.lists.databinding.ActivityListBinding
 import com.elpericoo.lists.list.item.Item
-import menu.MenuHandler
+import com.elpericoo.lists.menu.MenuHandler
+import com.elpericoo.lists.storage.ListService
 
 class ListActivity : AppCompatActivity() {
-    private lateinit var _binding: ActivityListBinding
+    private lateinit var _binding:ActivityListBinding
     private val binding get() = _binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +22,7 @@ class ListActivity : AppCompatActivity() {
         _binding = ActivityListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val list = ListService(this).list
+        val list = ListService(this).toDoList.list
         val listAdapter = ListAdapter(
             list,
             { item, pos -> moveHandler(item, pos) },
@@ -54,15 +52,16 @@ class ListActivity : AppCompatActivity() {
 
     }
 
-    //Menu
+
+    // Menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        var menuHandler = MenuHandler(this, "list")
-        menuHandler.intemHandler(item)
+        var menuHandler = MenuHandler(this,"list")
+        menuHandler.itemHandler(item)
         if (menuHandler.intent != null) {
             startActivity(menuHandler.intent)
         }

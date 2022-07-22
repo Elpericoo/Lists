@@ -1,9 +1,10 @@
-package com.elpericoo.lists.json
+package com.elpericoo.lists.views.listmanagement
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.elpericoo.lists.databinding.ItemJsonListBinding
+import com.elpericoo.lists.storage.JsonItem
 
 class JsonListAdapter(
     var jsonList: List<JsonItem>,

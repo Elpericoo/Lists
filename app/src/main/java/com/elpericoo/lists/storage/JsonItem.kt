@@ -1,4 +1,4 @@
-package com.elpericoo.lists.json
+package com.elpericoo.lists.storage
 
 class JsonItem (
     val name: String,

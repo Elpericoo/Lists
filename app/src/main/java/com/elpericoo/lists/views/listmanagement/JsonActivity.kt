@@ -1,4 +1,4 @@
-package com.elpericoo.lists.json
+package com.elpericoo.lists.views.listmanagement
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,12 +8,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.elpericoo.lists.R
 import com.elpericoo.lists.databinding.ActivityJsonBinding
-import menu.MenuHandler
+import com.elpericoo.lists.storage.JsonItem
+import com.elpericoo.lists.storage.JsonService
+import com.elpericoo.lists.menu.MenuHandler
 
 class JsonActivity : AppCompatActivity() {
-    private var  _binding: ActivityJsonBinding? = null
+    private var _binding: ActivityJsonBinding? = null
     private val binding get() = _binding!!
-
     private lateinit var jsonListAdapter: JsonListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +25,7 @@ class JsonActivity : AppCompatActivity() {
         val jsonList = JsonService(this).readFileList()
         jsonListAdapter = JsonListAdapter(
             jsonList,
-            { jsonItem,pos -> itemHandler(jsonItem, pos) },
+            { jsonItem, pos -> itemHandler(jsonItem, pos) },
             { jsonItem, pos -> deleteHandler(jsonItem, pos) }
         )
 
@@ -36,21 +37,21 @@ class JsonActivity : AppCompatActivity() {
             createJsonHandler()
         }
     }
-    //Menu
+
+    // Menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        var menuHandler = MenuHandler(this,"json")
-        menuHandler.intemHandler(item)
+        val menuHandler = MenuHandler(this, "json")
+        menuHandler.itemHandler(item)
         if (menuHandler.intent != null) {
             startActivity(menuHandler.intent)
         }
         return super.onOptionsItemSelected(item)
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
@@ -63,18 +64,17 @@ class JsonActivity : AppCompatActivity() {
         jsonService.selectFile(jsonListAdapter.jsonList, jsonItem)
         jsonListAdapter.notifyItemChanged(prev)
         jsonListAdapter.notifyItemChanged(pos)
-
     }
+
     private fun deleteHandler(jsonItem: JsonItem, pos: Int) {
-        var jsonService = JsonService(this)
+        val jsonService = JsonService(this)
         jsonService.deleteFile(jsonItem)
         jsonListAdapter.jsonList = jsonService.readFileList()
         jsonListAdapter.notifyItemRemoved(pos)
-
     }
 
-    private fun createJsonHandler(){
-        val jsonService= JsonService(this)
+    private fun createJsonHandler() {
+        val jsonService = JsonService(this)
         jsonService.createJsonFile(
             binding.jsonName.text.toString(),
             binding.exampleCheck.isChecked
@@ -83,6 +83,5 @@ class JsonActivity : AppCompatActivity() {
         val lastPos = jsonListAdapter.itemCount
         jsonListAdapter.jsonList = jsonService.readFileList()
         jsonListAdapter.notifyItemInserted(lastPos)
-
     }
 }

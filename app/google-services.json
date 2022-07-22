@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "560539641707",
+    "project_id": "vidales-lists",
+    "storage_bucket": "vidales-lists.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560539641707:android:bceb09fb9b1b9aa8fe4e2e",
+        "android_client_info": {
+          "package_name": "com.elpericoo.lists"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560539641707-vlmkk9e8i51bqa69ueu4ul6s67et6bu4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYjHy6Avd-NCp8_oJn7PJ1_NXtZMOzr94"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560539641707-vlmkk9e8i51bqa69ueu4ul6s67et6bu4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
